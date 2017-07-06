@@ -96,8 +96,8 @@ class CronParser
       t.min = -1
     end
 
-    # always nudge the minute
-    nudge_minute(t)
+    # always nudge the minute unless...
+    nudge_minute(t) unless time_specs[:minute][0].include?(t.min)
     t = t.to_time
     if num > 1
       recursive_calculate(:next,t,num)
